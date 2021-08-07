@@ -1,4 +1,3 @@
-import config
 import numpy as np
 from collections import Counter
 
@@ -28,7 +27,8 @@ class Environment:
     @staticmethod
     def _number_from_index(index):
         '''inverse of _index_from_number function'''
-        assert(0 <= index < config.max_guesses)
+        max_guesses=6**4
+        assert(0 <= index < max_guesses)
         digits = []
         while index > 0:
             digits.append(str(index % 6))
