@@ -1,14 +1,12 @@
-import random
 from environment import Environment
 from agent import Agent
 import pickle
-import matplotlib.pyplot as plt
 import pickle
-import os 
 from qlearning import *
+import sys
 
-
-q_agent = Agent(epsilon = 0.7)
+choice_of_epsilon = float(sys.argv[1])
+q_agent = Agent(epsilon = choice_of_epsilon)
 print('starting agent training...')
 train(q_agent,2000)
 print('completed agent training...')
