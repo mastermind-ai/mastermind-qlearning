@@ -7,7 +7,7 @@ import pickle
 import os 
 
 def random_agent_performance(secret="1234"):
-    """return num of guesses needed to get secret for an random agent"""
+    """return number of guesses needed to get secret for an random agent"""
     random_agent = Agent()
     random_agent.reset_possible_states()
     guess = random_agent.get_best_action()
@@ -30,10 +30,8 @@ def random_agent_average_performance(num):
 
 
 def train(agent, n_episodes):
-    """
-    Train the agent for n_episodes.
-    """
-    for _ in range(n_episodes):
+    """Train the agent for n_episodes."""
+    for i in range(n_episodes):
         secret = Environment._number_from_index(random.randint(0, 6 ** 4 - 1))
         env = Environment(secret)
         agent.reset_possible_states()
@@ -55,8 +53,7 @@ def train(agent, n_episodes):
 
 
 def num_guesses(agent, secret="1234"):
-    """return number of guesses needed by the agent to
-    get to the secret"""
+    """return number of guesses needed by the agent to get to the secret"""
     guess_list = []
     state_list = []
 
@@ -77,20 +74,18 @@ def num_guesses(agent, secret="1234"):
 
 def avg_num_guesses_needed(agent):
     """average number guesses needed for all the possible secret codes"""
-
     nums = []
 
-    for idx in range(6 ** 4):
-        secret = Environment._number_from_index(idx)
+    for i in range(6 ** 4):
+        secret = Environment._number_from_index(i)
         length,_,_ = num_guesses(agent, secret)
         nums.append(length)
 
-    #     print(nums)
     return sum(nums) / len(nums)
 
 
 def worst_case_length(agent):
-    """num of guesses needed in worst case"""
+    """number of guesses needed in worst case"""
 
     nums = []
 
@@ -99,11 +94,7 @@ def worst_case_length(agent):
         length,_,_ = num_guesses(agent, secret)
         nums.append(length)
 
-    #     print(nums)
     return max(nums)
-
-def guess(agent):
-    secret = Environment._number_from_index(idx)
 
 def format_state_list(state_list):
     formatted_state_list = []

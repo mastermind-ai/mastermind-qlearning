@@ -1,7 +1,5 @@
 import config
 import numpy as np
-import itertools
-import random
 from collections import Counter
 
 

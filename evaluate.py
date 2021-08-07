@@ -1,10 +1,7 @@
-import random
 from environment import Environment
 from agent import Agent
-import pickle
 import matplotlib.pyplot as plt
 import pickle
-import os 
 from qlearning import *
 
 print("baseline performance:", random_agent_average_performance(50))

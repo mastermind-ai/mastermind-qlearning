@@ -1,7 +1,6 @@
 from environment import Environment
 import random
 
-
 class Agent:
     """Q learning Agent"""
 
