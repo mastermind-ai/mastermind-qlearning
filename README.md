@@ -9,7 +9,6 @@ To get the results of average and worst performing cases using different values 
 To train an agent of a specific epsilon value based on the evaluation</br>
 `python train.py <epsilon>`
 
-To get the gameplay of the agent given a specific code:</br>
-add in start(secret_code) at the bottom of qlearning.py and run `python qlearning.py`
+To get the gameplay of the agent given a specific code: run `python qlearning.py`. This tests the saved agent on a randomly generated target
 
 This is not implemented as we are developing the function as an endpoint directly using Flask for integration
