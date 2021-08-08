@@ -79,15 +79,18 @@ def num_guesses(agent, secret="1234"):
 
     agent.reset_possible_states()
     guess = agent.get_best_action()
-
     env = Environment(secret)
+    feedback = env.score(secret, guess)
+    guess_list.append(guess)
+    state_list.append(feedback)
+
     num_guess = 1
     while guess != secret:
+        agent.restrict_possible_states(guess, feedback)
+        guess = agent.get_best_action()
         feedback = env.score(secret, guess)
         guess_list.append(guess)
         state_list.append(feedback)
-        agent.restrict_possible_states(guess, feedback)
-        guess = agent.get_best_action()
         num_guess += 1
     return num_guess, guess_list, state_list
 
