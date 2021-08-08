@@ -1,7 +1,7 @@
 # mastermind-qlearning
 uses q-learning algorithm to solve the mastermind puzzle. </br>
 
-Built with reference to https://github.com/Amelrich/Mastermind_RL/blob/master/AI_agent.py which implements the SARSA algorithm for mastermind </br>
+Built with reference to https://github.com/Amelrich/Mastermind_RL/blob/master/AI_agent.py which implements the SARSA algorithm for mastermind, we tweaked it to make use of q-learning intead. The main diffrence is that SARSA is an on-policy algorithm and q-learning is an off-policy algorithm. More explained in the project report. </br>
 
 To get the results of average and worst performing cases using different values of epsilon</br>
 `python evaluate.py`
