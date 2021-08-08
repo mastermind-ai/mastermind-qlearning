@@ -1,7 +1,6 @@
 from environment import Environment
 from agent import Agent
 import pickle
-import pickle
 from qlearning import *
 import sys
 
