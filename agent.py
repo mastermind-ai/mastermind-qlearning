@@ -30,7 +30,7 @@ class Agent:
         self.possible_states = new_states
 
     def learn_select_move(self):
-
+        """decide between exploration or exploitation based on epsilon value for learning"""
         best_move = self.get_best_action()
 
         selected_move = best_move
@@ -49,12 +49,14 @@ class Agent:
         return chosen_state
 
     def random_action(self):
+        """selects a random guess from combinations in possible states"""
         return random.choice(self.possible_states)
 
     def make_move(self, action, feedback):
         self.restrict_possible_states(action, feedback)
 
     def learn_from_move(self, action, feedback, reward):
+        """update state based on the action, feedback and reward after each move"""
         current_state = action  # action = state (guess the agent makes)
         r = reward  # reward for this state
 
@@ -65,5 +67,5 @@ class Agent:
         current_state_value = self.V[current_state]  # current value of state
         best_move_value = self.V[best_next_move]  # best possible value of next state.
         td_target = current_state_value + self.alpha * (r + best_move_value - current_state_value)  # Q-algorithm update
-        self.V[current_state] = td_target  # This is Q-learning. The previous lines setup this line.
+        self.V[current_state] = td_target  
 

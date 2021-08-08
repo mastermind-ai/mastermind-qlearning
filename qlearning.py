@@ -116,6 +116,7 @@ def worst_case_length(agent):
     return max(nums)
 
 def format_state_list(state_list):
+    """format state_list to an output appropriate for frontend GUI"""
     formatted_state_list = []
 
     for each_state in state_list:
@@ -134,9 +135,12 @@ def format_state_list(state_list):
     return formatted_state_list
 
 def format_guess_list(guess_list):
+    """format guess_list to an output appropriate for frontend GUI"""
     return [[INDEX_COLORS.get(int(index)) for index in guess] for guess in guess_list]
 
 def start(code):
+    """function for frontend to call for gameplay against qlearning agent"""
+    # use loaded agent, make sure that .pkl file is present, if not run the train.py file
     if os.path.isfile('./agent_state.pkl'):
         print('loading from pickle')
         with open('agent_state.pkl','rb') as inp:
