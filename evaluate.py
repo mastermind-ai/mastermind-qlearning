@@ -1,6 +1,5 @@
 from environment import Environment
 from agent import Agent
-import matplotlib.pyplot as plt
 import pickle
 from qlearning import *
 

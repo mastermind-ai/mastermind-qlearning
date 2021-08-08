@@ -1,12 +1,8 @@
-import random
 from environment import Environment
 from agent import Agent
 import pickle
-import matplotlib.pyplot as plt
-import pickle
 import os
-from random import sample
-from random import choices
+from random import sample, choices, randint
 
 INDEX_COLORS = {
   0: "red",
@@ -43,7 +39,7 @@ def random_agent_performance(secret="1234"):
 def random_agent_average_performance(num):
     l = []
     for _ in range(num):
-        secret = Environment._number_from_index(random.randint(0, 6 ** 4 - 1))
+        secret = Environment._number_from_index(randint(0, 6 ** 4 - 1))
         length = random_agent_performance(secret)
         l.append(length)
     return sum(l) / len(l)
@@ -52,7 +48,7 @@ def random_agent_average_performance(num):
 def train(agent, n_episodes):
     """Train the agent for n_episodes."""
     for i in range(n_episodes):
-        secret = Environment._number_from_index(random.randint(0, 6 ** 4 - 1))
+        secret = Environment._number_from_index(randint(0, 6 ** 4 - 1))
         env = Environment(secret)
         agent.reset_possible_states()
         action = agent.random_action()  # init action
