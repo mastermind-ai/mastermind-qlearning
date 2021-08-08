@@ -4,7 +4,27 @@ from agent import Agent
 import pickle
 import matplotlib.pyplot as plt
 import pickle
-import os 
+import os
+from random import sample
+from random import choices
+
+INDEX_COLORS = {
+  0: "red",
+  1: "blue",
+  2: "green",
+  3: "purple",
+  4: "yellow",
+  5: "orange",
+}
+
+COLORS_INDEX = {
+  "red": 0,
+  "blue": 1 ,
+  "green": 2,
+  "purple": 3,
+  "yellow": 4,
+  "orange": 5,
+}
 
 def random_agent_performance(secret="1234"):
     """return number of guesses needed to get secret for an random agent"""
@@ -59,7 +79,7 @@ def num_guesses(agent, secret="1234"):
 
     agent.reset_possible_states()
     guess = agent.get_best_action()
-    
+
     env = Environment(secret)
     num_guess = 1
     while guess != secret:
@@ -98,7 +118,7 @@ def worst_case_length(agent):
 
 def format_state_list(state_list):
     formatted_state_list = []
-    
+
     for each_state in state_list:
         new_state_list =[]
         blacks = each_state[0]
@@ -110,9 +130,12 @@ def format_state_list(state_list):
             new_state_list.append("white")
         for i in range(default):
             new_state_list.append("default")
-            
+
         formatted_state_list.append(new_state_list)
     return formatted_state_list
+
+def format_guess_list(guess_list):
+    return [[INDEX_COLORS.get(int(index)) for index in guess] for guess in guess_list]
 
 def start(code):
     if os.path.isfile('./agent_state.pkl'):
@@ -120,16 +143,31 @@ def start(code):
         with open('agent_state.pkl','rb') as inp:
             q_agent = pickle.load(inp)
     else:
-        return 
+        return
     secret = code
     _, guess_list, state_list = num_guesses(q_agent,secret)
-    guess_list = [list(x) for x in guess_list]
+    guess_list = format_guess_list([list(x) for x in guess_list])
     state_list = format_state_list(state_list)
 
-    return guess_list, state_list 
+    return guess_list, state_list
 
-
-
-
-
-
+if __name__ == "__main__":
+    num_colors = 5
+    replacement = False
+    COLORS_MAP = {
+        5: ["red", "blue", "green", "purple", "yellow"],
+        6: ["red", "blue", "green", "purple", "yellow", "orange"]
+    }
+    COLORS = COLORS_MAP.get(num_colors)
+    if replacement:
+        answer = choices(COLORS, k=4)
+    else:
+        answer = sample(COLORS, 4)
+    print(f'target: {answer}')
+    # convert colors to digits for algo to process
+    answer_num = ''
+    for color in answer:
+        answer_num += str(COLORS_INDEX.get(color))
+    board, state = start(answer_num)
+    for index, board_value in enumerate(board):
+        print(f'iteration: {index} guess: {board_value} feedback: {state[index]}')
